@@ -1,0 +1,533 @@
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    max-width: 1200px;
+    margin: auto;
+    background: #fff8f0;
+    color: #333;
+}
+
+/* HEADER */
+
+header {
+    background: #ff9800;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    margin: 10px 0;
+    font-size: 35px;
+}
+
+header p {
+    color: white;
+    font-size: 20px;
+}
+
+/* LOGO */
+
+.logo img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 50%;
+    animation: floatLogo 2s infinite;
+}
+
+@keyframes floatLogo {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* NAVIGATION */
+
+nav {
+    margin-top: 20px;
+}
+
+nav a {
+    background: white;
+    color: #ff9800;
+    padding: 10px 18px;
+    border-radius: 25px;
+    margin: 5px;
+    display: inline-block;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #e65100;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* HEADINGS */
+
+h2 {
+    text-align: center;
+    margin-top: 30px;
+    color: #e65100;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+    margin: 25px 0;
+    overflow: hidden;
+}
+
+.main-food-img {
+    display: block;
+    width: 95%;
+    max-width: 1100px;
+    height: 450px;
+    margin: 25px auto;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: zoomFood 5s infinite alternate;
+}
+
+@keyframes zoomFood {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.05);
+    }
+}
+
+/* MENU */
+
+#menu {
+    padding: 20px;
+}
+
+#food-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* FOOD CARD */
+
+.food-card {
+    position: relative;
+    background: white;
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.food-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px gray;
+}
+
+.food-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.food-card h3 {
+    color: #e65100;
+    font-size: 24px;
+}
+
+.food-card p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* PRICE */
+
+.price {
+    display: inline-block;
+    background: #ff9800;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* POPULAR BADGE */
+
+.badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #e65100;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 2;
+}
+
+/* WHATSAPP BUTTON */
+
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #25D366;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    transition: 0.2s;
+}
+
+.whatsapp-button:hover {
+    background: #128C7E;
+    transform: scale(1.04);
+}
+
+/* SMALL WHATSAPP */
+
+.whatsapp-small {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #25D366;
+    color: white;
+    padding: 9px 15px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.whatsapp-small:hover {
+    background: #128C7E;
+    transform: scale(1.03);
+}
+
+/* REAL WHATSAPP ICON */
+
+.whatsapp-logo {
+    width: 30px;
+    height: 30px;
+    background: #25D366;
+    border: 3px solid white;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.whatsapp-logo::after {
+    content: "☎";
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    transform: rotate(-25deg);
+}
+
+/* GALLERY */
+
+.gallery {
+    padding: 20px;
+}
+
+.gallery-box {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.gallery-box img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px lightgray;
+    transition: 0.3s;
+}
+
+.gallery-box img:hover {
+    transform: scale(1.08);
+}
+
+/* ABOUT */
+
+.about {
+    padding: 25px;
+}
+
+/* CONTACT */
+
+.contact-buttons {
+    text-align: center;
+    padding: 20px;
+    margin: 30px 0;
+}
+
+.contact-buttons a {
+    display: inline-block;
+    background: #ff9800;
+    color: white;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.contact-buttons a:hover {
+    background: #e65100;
+    transform: scale(1.05);
+}
+
+/* TRUST */
+
+.trust {
+    padding: 25px;
+}
+
+.trust-box {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.trust-box div {
+    background: white;
+    width: 250px;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.trust-box div:hover {
+    transform: translateY(-8px);
+}
+
+.trust-box h3 {
+    color: #e65100;
+}
+
+/* DELIVERY */
+
+.delivery {
+    background: #fff3e0;
+    margin: 30px 20px;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.delivery h2 {
+    color: #e65100;
+}
+
+/* REVIEWS */
+
+.reviews {
+    padding: 20px;
+}
+
+.review-card {
+    background: white;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 600px;
+    box-shadow: 0 5px 15px lightgray;
+    transition: 0.3s;
+}
+
+.review-card:hover {
+    transform: translateY(-8px);
+}
+
+/* BOOKING */
+
+.booking {
+    background: #fff3e0;
+    margin: 30px 20px;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.booking input,
+.booking textarea {
+    width: 80%;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.booking textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.booking button {
+    margin-top: 10px;
+}
+
+/* FOOTER */
+
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+footer p {
+    color: white;
+    margin: 5px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    body {
+        width: 100%;
+    }
+
+    header {
+        padding: 20px 10px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    header p {
+        font-size: 17px;
+    }
+
+    .logo img {
+        width: 70px;
+        height: 70px;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px auto;
+        width: 150px;
+    }
+
+    .main-food-img {
+        width: 92%;
+        height: 250px;
+    }
+
+    #food-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .food-card {
+        width: 85%;
+        margin: 15px 0;
+    }
+
+    .gallery-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallery-box img {
+        width: 90%;
+        height: 220px;
+    }
+
+    .trust-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .trust-box div {
+        width: 85%;
+    }
+
+    .contact-buttons a {
+        display: block;
+        width: 180px;
+        margin: 10px auto;
+    }
+
+    .booking {
+        margin: 20px 10px;
+    }
+
+    .booking input,
+    .booking textarea {
+        width: 90%;
+    }
+
+    .whatsapp-button {
+        font-size: 15px;
+        padding: 11px 16px;
+    }
+
+    .whatsapp-small {
+        font-size: 14px;
+    }
+}
