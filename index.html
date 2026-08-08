@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home Food - Admin Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #fff8f0;
+        }
+
+        .login-box {
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            color: #e65100;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #25D366;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #128C7E;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <h1>🍲 Home Food</h1>
+
+        <p class="subtitle">Admin Login</p>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Admin Email"
+            autocomplete="email"
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            autocomplete="current-password"
+        >
+
+        <button type="button" onclick="login()">
+            Login
+        </button>
+
+        <div id="message"></div>
+
+    </div>
+
+    <script>
+        async function login() {
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            const message =
+                document.getElementById("message");
+
+            if (!email || !password) {
+                message.textContent =
+                    "Please enter email and password.";
+                return;
+            }
+
+            message.textContent = "Logging in...";
+
+            try {
+
+                const response = await fetch(
+                    "http://localhost:5000/api/admin/login",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                    }
+                );
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    message.textContent =
+                        data.message || "Login failed.";
+                    return;
+                }
+
+                if (!data.token) {
+                    message.textContent =
+                        "Login successful, but token missing.";
+                    return;
+                }
+
+                localStorage.setItem(
+                    "homeFoodToken",
+                    data.token
+                );
+
+                message.textContent =
+                    "Login successful!";
+
+                setTimeout(function () {
+                    window.location.href =
+                        "dashboard.html";
+                }, 500);
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "Unable to connect to server.";
+
+            }
+        }
+    </script>
+
+</body>
+
+</html>

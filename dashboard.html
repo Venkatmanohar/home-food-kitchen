@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<title>Home Food - Admin Dashboard</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    header {
+        background: #222;
+        color: white;
+        padding: 18px 25px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 22px;
+    }
+
+    #logoutBtn {
+        background: #e53935;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 7px;
+        cursor: pointer;
+    }
+
+    .container {
+        width: 92%;
+        max-width: 1100px;
+        margin: 25px auto;
+    }
+
+    .box {
+        background: white;
+        padding: 22px;
+        margin-bottom: 25px;
+        border-radius: 12px;
+
+        box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    .box h2 {
+        margin-top: 0;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+
+        padding: 12px;
+
+        margin-bottom: 12px;
+
+        border: 1px solid #ddd;
+
+        border-radius: 7px;
+
+        font-size: 15px;
+    }
+
+    textarea {
+        min-height: 90px;
+        resize: vertical;
+    }
+
+    .add-btn {
+        background: #25D366;
+        color: white;
+
+        border: none;
+
+        padding: 12px 20px;
+
+        border-radius: 7px;
+
+        cursor: pointer;
+
+        font-size: 15px;
+    }
+
+    .food-list {
+        display: grid;
+
+        grid-template-columns:
+            repeat(auto-fit, minmax(250px, 1fr));
+
+        gap: 20px;
+    }
+
+    .food-card {
+        border: 1px solid #ddd;
+
+        border-radius: 10px;
+
+        padding: 15px;
+
+        background: white;
+    }
+
+    .food-card img {
+        width: 100%;
+        height: 180px;
+
+        object-fit: cover;
+
+        border-radius: 8px;
+    }
+
+    .food-card h3 {
+        margin-bottom: 5px;
+    }
+
+    .price {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    .delete-btn {
+        background: #e53935;
+        color: white;
+
+        border: none;
+
+        padding: 9px 14px;
+
+        border-radius: 6px;
+
+        cursor: pointer;
+    }
+
+    .edit-btn {
+        background: #1976d2;
+        color: white;
+
+        border: none;
+
+        padding: 9px 14px;
+
+        border-radius: 6px;
+
+        cursor: pointer;
+    }
+
+    #message {
+        margin-top: 12px;
+        font-weight: bold;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<header>
+
+```
+<h1>🍲 Home Food Admin</h1>
+
+<button id="logoutBtn" onclick="logout()">
+    Logout
+</button>
+```
+
+</header>
+
+<div class="container">
+
+```
+<!-- ADD FOOD -->
+
+<div class="box">
+
+    <h2>➕ Add Food</h2>
+
+
+   <input
+    type="text"
+    id="foodName"
+    placeholder="Food Name"
+    value="Chicken Meals"
+>
+
+<textarea
+    id="foodDescription"
+    placeholder="Food Description"
+>Fresh homemade chicken meals</textarea>
+
+<input
+    type="number"
+    id="foodPrice"
+    placeholder="Price"
+    value="120"
+>
+
+<input
+    type="text"
+    id="foodImage"
+    placeholder="Image file name e.g. biryani.jpg"
+    value="meals.jpg"
+>
+    <button
+        class="add-btn"
+        onclick="addFood()"
+    >
+        Add Food
+    </button>
+
+
+    <div id="message"></div>
+
+</div>
+
+
+
+<!-- FOOD LIST -->
+
+<div class="box">
+
+    <h2>🍽️ Food List</h2>
+
+    <div
+        id="foodList"
+        class="food-list"
+    >
+        Loading...
+    </div>
+
+</div>
+```
+
+</div>
+
+<script>
+
+
+const API =
+    "http://localhost:5000";
+
+
+const token =
+    localStorage.getItem("homeFoodToken");
+
+
+
+/* Check Login */
+
+if (!token) {
+
+    alert("Please login first.");
+
+    window.location.href =
+        "admin.html";
+
+}
+
+
+
+/* ==========================================
+   ADD FOOD
+   ========================================== */
+
+async function addFood() {
+
+    const name =
+        document.getElementById("foodName").value.trim();
+
+    const description =
+        document.getElementById("foodDescription").value.trim();
+
+    const price =
+        document.getElementById("foodPrice").value;
+
+    const image =
+        document.getElementById("foodImage").value.trim();
+
+
+    const message =
+        document.getElementById("message");
+
+
+    if (!name || !description || !price) {
+
+        message.textContent =
+            "Please fill name, description and price.";
+
+        return;
+
+    }
+
+
+    try {
+
+        const response = await fetch(
+            API + "/api/foods/add",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization":
+                        "Bearer " + token
+                },
+
+                body: JSON.stringify({
+
+                    name: name,
+
+                    description: description,
+
+                    price: Number(price),
+
+                    image: image || "food.jpg"
+
+                })
+
+            }
+        );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            message.textContent =
+                "Food added successfully!";
+
+            document.getElementById(
+                "foodName"
+            ).value = "";
+
+            document.getElementById(
+                "foodDescription"
+            ).value = "";
+
+            document.getElementById(
+                "foodPrice"
+            ).value = "";
+
+            document.getElementById(
+                "foodImage"
+            ).value = "";
+
+
+            loadFoods();
+
+        } else {
+
+            message.textContent =
+                data.message || "Food add failed.";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        message.textContent =
+            "Unable to connect to server.";
+
+    }
+
+}
+
+
+
+/* ==========================================
+   GET FOODS
+   ========================================== */
+
+async function loadFoods() {
+
+    const foodList =
+        document.getElementById("foodList");
+
+
+    try {
+
+        const response =
+            await fetch(
+                API + "/api/foods"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !data.success ||
+            !data.foods ||
+            data.foods.length === 0
+        ) {
+
+            foodList.innerHTML =
+                "<p>No foods available.</p>";
+
+            return;
+
+        }
+
+
+        foodList.innerHTML = "";
+
+
+        data.foods.forEach(food => {
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "food-card";
+
+
+            card.innerHTML = `
+
+                <img
+                    src="images/${food.image || "food.jpg"}"
+                    alt="${food.name}"
+                    onerror="this.src='images/food.jpg'"
+                >
+
+                <h3>${food.name}</h3>
+
+                <p>${food.description || ""}</p>
+
+                <div class="price">
+                    ₹${food.price}
+                </div>
+
+                <div class="actions">
+
+                    <button
+                        class="edit-btn"
+                        onclick="editFood(${food.id})"
+                    >
+                        ✏️ Edit
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteFood(${food.id})"
+                    >
+                        🗑️ Delete
+                    </button>
+
+                </div>
+
+            `;
+
+
+            foodList.appendChild(card);
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        foodList.innerHTML =
+            "<p>Unable to connect to server.</p>";
+
+    }
+
+}
+
+
+
+/* ==========================================
+   DELETE FOOD
+   ========================================== */
+
+async function deleteFood(id) {
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this food?"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API + "/api/foods/" + id,
+                {
+                    method: "DELETE",
+
+                    headers: {
+                        "Authorization":
+                            "Bearer " + token
+                    }
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            alert(
+                "Food deleted successfully."
+            );
+
+            loadFoods();
+
+        } else {
+
+            alert(
+                data.message ||
+                "Delete failed."
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to connect to server."
+        );
+
+    }
+
+}
+
+
+
+/* ==========================================
+   EDIT FOOD
+   ========================================== */
+
+async function editFood(id) {
+
+    const name =
+        prompt("Enter new food name:");
+
+    if (name === null) {
+        return;
+    }
+
+
+    const description =
+        prompt("Enter new description:");
+
+    if (description === null) {
+        return;
+    }
+
+
+    const price =
+        prompt("Enter new price:");
+
+    if (price === null) {
+        return;
+    }
+
+
+    const image =
+        prompt(
+            "Enter image file name:",
+            "food.jpg"
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                API + "/api/foods/" + id,
+                {
+                    method: "PUT",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " + token
+
+                    },
+
+                    body: JSON.stringify({
+
+                        name: name,
+
+                        description: description,
+
+                        price: Number(price),
+
+                        image:
+                            image || "food.jpg"
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            alert(
+                "Food updated successfully."
+            );
+
+            loadFoods();
+
+        } else {
+
+            alert(
+                data.message ||
+                "Update failed."
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to connect to server."
+        );
+
+    }
+
+}
+
+
+
+/* ==========================================
+   LOGOUT
+   ========================================== */
+
+function logout() {
+
+    localStorage.removeItem(
+        "homeFoodToken"
+    );
+
+
+    window.location.href =
+        "admin.html";
+
+}
+
+
+
+/* Load foods */
+
+loadFoods();
+
+
+</script>
+
+</body>
+
+</html>
+
+
