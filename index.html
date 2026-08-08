@@ -1,972 +1,224 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <title>Home Food Kitchen</title>
-
-    <link rel="icon" href="./logo.png">
-    <link rel="stylesheet" href="./style.css">
+    <title>Home Food - Admin Login</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-        content="Fresh homemade food, biryani, meals and tasty dishes. Order now on WhatsApp.">
-
-    <meta name="keywords"
-        content="Home Food, Homemade Meals, Biryani, Andhra Food">
-
-    <meta name="author"
-        content="Home Food Kitchen">
-
-
-    <!-- ================= WHATSAPP BUTTON STYLE ================= -->
-
     <style>
+        * {
+            box-sizing: border-box;
+        }
 
-        .whatsapp-button,
-        .whatsapp-small {
+        body {
+            margin: 0;
+            min-height: 100vh;
 
-            display: inline-flex;
-            align-items: center;
+            display: flex;
             justify-content: center;
-            gap: 9px;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .login-box {
+            width: 90%;
+            max-width: 400px;
+
+            padding: 30px;
+
+            background: white;
+
+            border-radius: 15px;
+
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+
+            text-align: center;
+        }
+
+        .login-box h1 {
+            margin: 0 0 10px;
+        }
+
+        .login-box p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px;
+            margin-bottom: 15px;
+
+            border: 1px solid #ddd;
+            border-radius: 8px;
+
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+            border-radius: 8px;
 
             background: #25D366;
             color: white;
 
-            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
+        button:hover {
+            opacity: 0.9;
+        }
+
+        #message {
+            margin-top: 15px;
             font-weight: bold;
-
-            border-radius: 30px;
-
-            transition: 0.25s;
-
-            box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-
         }
-
-
-        .whatsapp-button {
-
-            padding: 13px 22px;
-            font-size: 17px;
-
-        }
-
-
-        .whatsapp-small {
-
-            padding: 9px 16px;
-            font-size: 15px;
-
-        }
-
-
-        .whatsapp-button:hover,
-        .whatsapp-small:hover {
-
-            background: #128C7E;
-            transform: scale(1.04);
-
-        }
-
-
-        /* REAL WHATSAPP SVG ICON */
-
-        .whatsapp-icon {
-
-            width: 28px;
-            height: 28px;
-
-            display: inline-flex;
-
-            align-items: center;
-            justify-content: center;
-
-            flex-shrink: 0;
-
-        }
-
-
-        .whatsapp-icon svg {
-
-            width: 100%;
-            height: 100%;
-
-            display: block;
-
-        }
-
-
-        .whatsapp-small .whatsapp-icon {
-
-            width: 24px;
-            height: 24px;
-
-        }
-
-
-        /* Floating WhatsApp */
-
-        .whatsapp-floating {
-
-            position: fixed;
-
-            right: 20px;
-            bottom: 20px;
-
-            width: 58px;
-            height: 58px;
-
-            background: #25D366;
-
-            border-radius: 50%;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            z-index: 9999;
-
-            box-shadow: 0 5px 18px rgba(0,0,0,0.3);
-
-            transition: 0.25s;
-
-        }
-
-
-        .whatsapp-floating:hover {
-
-            background: #128C7E;
-
-            transform: scale(1.1);
-
-        }
-
-
-        .whatsapp-floating svg {
-
-            width: 34px;
-            height: 34px;
-
-        }
-
-
-        @media(max-width:600px) {
-
-            .whatsapp-floating {
-
-                right: 15px;
-                bottom: 15px;
-
-                width: 55px;
-                height: 55px;
-
-            }
-
-        }
-
     </style>
-
 </head>
-
 
 <body>
 
+    <div class="login-box">
 
-<!-- ==================================================
-     HEADER
-================================================== -->
+        <h1>🍲 Home Food</h1>
 
-<header>
-
-
-    <div class="logo">
-
-        <img
-            loading="lazy"
-            src="./logo.png"
-            alt="Home Food Kitchen Logo"
-            onerror="this.style.display='none';">
-
-    </div>
-
-
-    <h1>
-        Home Food Kitchen
-    </h1>
-
-
-    <p>
-        Fresh • Healthy • Homemade
-    </p>
-
-
-    <nav>
-
-        <a href="#menu">
-            Menu
-        </a>
-
-        <a href="#gallery">
-            Gallery
-        </a>
-
-        <a href="#about">
-            About
-        </a>
-
-        <a href="#contact">
-            Contact
-        </a>
-
-        <a href="#booking">
-            Booking
-        </a>
-
-    </nav>
-
-
-</header>
-
-
-
-<!-- ==================================================
-     MAIN FOOD IMAGE
-================================================== -->
-
-<section class="hero">
-
-
-    <img
-        loading="lazy"
-        class="main-food-img"
-        src="./food.jpg"
-        alt="Home Food"
-        onerror="this.src='./logo.png';">
-
-</section>
-
-
-
-<!-- ==================================================
-     MENU
-================================================== -->
-
-<section id="menu">
-
-
-    <h2>
-        Our Special Menu 🍽️
-    </h2>
-
-
-    <div id="food-list">
-
-
-        <!-- CHICKEN BIRYANI -->
-
-        <div class="food-card">
-
-
-            <img
-                loading="lazy"
-                src="./food.jpg"
-                alt="Chicken Biryani"
-                onerror="this.src='./logo.png';">
-
-
-            <h3>
-                🍽️ Chicken Biryani
-            </h3>
-
-
-            <p>
-                Home made tasty chicken biryani
-            </p>
-
-
-            <span class="price">
-                ₹250
-            </span>
-
-
-            <br>
-            <br>
-
-
-            <a
-                class="whatsapp-small"
-                target="_blank"
-                rel="noopener"
-                href="https://wa.me/917842984722?text=Hello%20Home%20Food%20Kitchen%2C%20I%20want%20to%20order%20Chicken%20Biryani">
-
-
-                <span class="whatsapp-icon">
-
-                    <svg
-                        viewBox="0 0 32 32"
-                        xmlns="http://www.w3.org/2000/svg">
-
-                        <circle
-                            cx="16"
-                            cy="16"
-                            r="15"
-                            fill="#25D366"/>
-
-                        <path
-                            fill="#fff"
-                            d="M23.5 8.5A10.5 10.5 0 0 0 7.6 21.2L6 26l5-1.6A10.5 10.5 0 1 0 23.5 8.5zm-7.5 16a8.7 8.7 0 0 1-4.4-1.2l-.3-.2-3 .9.9-2.9-.2-.3a8.7 8.7 0 1 1 7 3.7zm4.8-6.5c-.3-.2-1.8-.9-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.7.1-.2 0-.4-.1-.5-.1-.2-.7-1.7-1-2.1-.3-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.1 3.1c.1.2 2 3.1 4.9 4.4.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.3.3-.6.3-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/>
-
-                    </svg>
-
-                </span>
-
-
-                <span>
-                    Order on WhatsApp
-                </span>
-
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-
-    <br>
-
-
-    <!-- BIG WHATSAPP BUTTON -->
-
-    <a
-        class="whatsapp-button"
-        target="_blank"
-        rel="noopener"
-        href="https://wa.me/917842984722?text=Hello%20Home%20Food%20Kitchen%2C%20I%20want%20to%20order%20food">
-
-
-        <span class="whatsapp-icon">
-
-            <svg
-                viewBox="0 0 32 32"
-                xmlns="http://www.w3.org/2000/svg">
-
-                <circle
-                    cx="16"
-                    cy="16"
-                    r="15"
-                    fill="#25D366"/>
-
-                <path
-                    fill="#fff"
-                    d="M23.5 8.5A10.5 10.5 0 0 0 7.6 21.2L6 26l5-1.6A10.5 10.5 0 1 0 23.5 8.5zm-7.5 16a8.7 8.7 0 0 1-4.4-1.2l-.3-.2-3 .9.9-2.9-.2-.3a8.7 8.7 0 1 1 7 3.7zm4.8-6.5c-.3-.2-1.8-.9-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.7.1-.2 0-.4-.1-.5-.1-.2-.7-1.7-1-2.1-.3-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.1 3.1c.1.2 2 3.1 4.9 4.4.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.3.3-.6.3-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/>
-
-            </svg>
-
-        </span>
-
-
-        <span>
-            Order on WhatsApp
-        </span>
-
-
-    </a>
-
-
-</section>
-
-
-
-<!-- ==================================================
-     GALLERY
-================================================== -->
-
-<section id="gallery">
-
-
-    <h2>
-        Food Gallery 🍽️
-    </h2>
-
-
-    <div class="gallery-box">
-
-
-        <img
-            loading="lazy"
-            src="./food.jpg"
-            alt="Homemade Food"
-            onerror="this.src='./logo.png';">
-
-
-        <img
-            loading="lazy"
-            src="./food.jpg"
-            alt="Homemade Food"
-            onerror="this.src='./logo.png';">
-
-
-        <img
-            loading="lazy"
-            src="./food.jpg"
-            alt="Homemade Food"
-            onerror="this.src='./logo.png';">
-
-
-        <img
-            loading="lazy"
-            src="./food.jpg"
-            alt="Homemade Food"
-            onerror="this.src='./logo.png';">
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- ==================================================
-     ABOUT
-================================================== -->
-
-<section id="about">
-
-
-    <h2>
-        About Us
-    </h2>
-
-
-    <p>
-
-        We prepare fresh, healthy and hygienic homemade food
-        with quality ingredients.
-
-        Pre-order on WhatsApp and enjoy delicious home-cooked meals.
-
-    </p>
-
-
-</section>
-
-
-
-<!-- ==================================================
-     CONTACT
-================================================== -->
-
-<section id="contact">
-
-
-    <h2>
-        Contact Us 📞
-    </h2>
-
-
-    <p>
-        📞 Phone: 7842984722
-    </p>
-
-
-    <p>
-        📍 Address: Your City, Andhra Pradesh
-    </p>
-
-
-    <p>
-        🕒 Timings: 8:00 AM - 10:00 PM
-    </p>
-
-
-    <p>
-        📲 WhatsApp Orders Available
-    </p>
-
-
-    <br>
-
-
-    <a href="tel:7842984722">
-        📞 Call Now
-    </a>
-
-
-    <br>
-    <br>
-
-
-    <a
-        target="_blank"
-        rel="noopener"
-        href="https://maps.google.com">
-
-        📍 Open Location
-
-    </a>
-
-
-    <br>
-    <br>
-
-
-    <a
-        class="whatsapp-small"
-        target="_blank"
-        rel="noopener"
-        href="https://wa.me/917842984722">
-
-
-        <span class="whatsapp-icon">
-
-            <svg
-                viewBox="0 0 32 32"
-                xmlns="http://www.w3.org/2000/svg">
-
-                <circle
-                    cx="16"
-                    cy="16"
-                    r="15"
-                    fill="#25D366"/>
-
-                <path
-                    fill="#fff"
-                    d="M23.5 8.5A10.5 10.5 0 0 0 7.6 21.2L6 26l5-1.6A10.5 10.5 0 1 0 23.5 8.5zm-7.5 16a8.7 8.7 0 0 1-4.4-1.2l-.3-.2-3 .9.9-2.9-.2-.3a8.7 8.7 0 1 1 7 3.7zm4.8-6.5c-.3-.2-1.8-.9-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.7.1-.2 0-.4-.1-.5-.1-.2-.7-1.7-1-2.1-.3-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.1 3.1c.1.2 2 3.1 4.9 4.4.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.3.3-.6.3-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/>
-
-            </svg>
-
-        </span>
-
-
-        WhatsApp
-
-    </a>
-
-
-</section>
-
-
-
-<!-- ==================================================
-     WHY CHOOSE US
-================================================== -->
-
-<section>
-
-
-    <h2>
-        Why Choose Us ⭐
-    </h2>
-
-
-    <div class="trust-box">
-
-
-        <div>
-
-            <h3>
-                🍲 Fresh Food
-            </h3>
-
-            <p>
-                Daily fresh homemade meals.
-            </p>
-
-        </div>
-
-
-        <div>
-
-            <h3>
-                🧼 Hygienic
-            </h3>
-
-            <p>
-                Clean and quality ingredients.
-            </p>
-
-        </div>
-
-
-        <div>
-
-            <h3>
-                ❤️ Homemade Taste
-            </h3>
-
-            <p>
-                Made with care like home.
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- ==================================================
-     DELIVERY
-================================================== -->
-
-<section>
-
-
-    <h2>
-        Delivery Information 🛵
-    </h2>
-
-
-    <p>
-        🕒 Order Time: 8:00 AM - 10:00 PM
-    </p>
-
-
-    <p>
-        📦 Pre-order available on WhatsApp
-    </p>
-
-
-</section>
-
-
-
-<!-- ==================================================
-     REVIEWS
-================================================== -->
-
-<section>
-
-
-    <h2>
-        Customer Reviews ⭐
-    </h2>
-
-
-    <div class="review-card">
-
-        <p>
-            ⭐⭐⭐⭐⭐
-        </p>
-
-        <h3>
-            Very tasty home food!
-        </h3>
-
-    </div>
-
-
-    <div class="review-card">
-
-        <p>
-            ⭐⭐⭐⭐⭐
-        </p>
-
-        <h3>
-            Fresh and Hygienic.
-        </h3>
-
-    </div>
-
-
-    <div class="review-card">
-
-        <p>
-            ⭐⭐⭐⭐⭐
-        </p>
-
-        <h3>
-            Best Homemade Meals.
-        </h3>
-
-    </div>
-
-
-</section>
-
-
-
-<!-- ==================================================
-     BOOKING
-================================================== -->
-
-<section id="booking">
-
-
-    <h2>
-        Book Your Order 🍽️
-    </h2>
-
-
-    <div class="booking">
-
+        <p>Admin Login</p>
 
         <input
-            type="text"
-            id="customerName"
-            placeholder="Your Name"
-            required>
-
-
-        <input
-            type="tel"
-            id="customerPhone"
-            placeholder="Phone Number"
-            required>
-
+            type="email"
+            id="email"
+            placeholder="Admin Email"
+            autocomplete="email"
+        >
 
         <input
-            type="date"
-            id="orderDate"
-            required>
+            type="password"
+            id="password"
+            placeholder="Password"
+            autocomplete="current-password"
+        >
 
-
-        <textarea
-            id="orderDetails"
-            placeholder="Your Order Details"
-            required></textarea>
-
-
-        <button
-            class="whatsapp-button"
-            type="button"
-            onclick="sendWhatsApp()">
-
-
-            <span class="whatsapp-icon">
-
-                <svg
-                    viewBox="0 0 32 32"
-                    xmlns="http://www.w3.org/2000/svg">
-
-                    <circle
-                        cx="16"
-                        cy="16"
-                        r="15"
-                        fill="#25D366"/>
-
-                    <path
-                        fill="#fff"
-                        d="M23.5 8.5A10.5 10.5 0 0 0 7.6 21.2L6 26l5-1.6A10.5 10.5 0 1 0 23.5 8.5zm-7.5 16a8.7 8.7 0 0 1-4.4-1.2l-.3-.2-3 .9.9-2.9-.2-.3a8.7 8.7 0 1 1 7 3.7zm4.8-6.5c-.3-.2-1.8-.9-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.7.1-.2 0-.4-.1-.5-.1-.2-.7-1.7-1-2.1-.3-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.1 3.1c.1.2 2 3.1 4.9 4.4.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.3.3-.6.3-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/>
-
-                </svg>
-
-            </span>
-
-
-            <span>
-                Submit Booking on WhatsApp
-            </span>
-
-
+        <button onclick="login()">
+            Login
         </button>
 
+        <div id="message"></div>
 
     </div>
 
 
-</section>
+    <script>
+        async function login() {
 
+            const email =
+                document.getElementById("email").value.trim();
 
+            const password =
+                document.getElementById("password").value;
 
-<!-- ==================================================
-     FOOTER
-================================================== -->
+            const message =
+                document.getElementById("message");
 
-<footer>
 
+            if (!email || !password) {
 
-    <p>
-        © 2026 Home Food Kitchen
-    </p>
+                message.textContent =
+                    "Please enter email and password.";
 
+                return;
+            }
 
-    <p>
-        Fresh Homemade Food ❤️
-    </p>
 
+            message.textContent =
+                "Logging in...";
 
-    <p>
-        📞 7842984722
-    </p>
 
+            try {
 
-    <p>
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/admin/login",
+                        {
+                            method: "POST",
 
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
 
-        <a
-            class="whatsapp-small"
-            target="_blank"
-            rel="noopener"
-            href="https://wa.me/917842984722">
+                            body: JSON.stringify({
+                                email: email,
+                                password: password
+                            })
+                        }
+                    );
 
 
-            <span class="whatsapp-icon">
+                const data =
+                    await response.json();
 
-                <svg
-                    viewBox="0 0 32 32"
-                    xmlns="http://www.w3.org/2000/svg">
 
-                    <circle
-                        cx="16"
-                        cy="16"
-                        r="15"
-                        fill="#25D366"/>
+                if (!response.ok) {
 
-                    <path
-                        fill="#fff"
-                        d="M23.5 8.5A10.5 10.5 0 0 0 7.6 21.2L6 26l5-1.6A10.5 10.5 0 1 0 23.5 8.5zm-7.5 16a8.7 8.7 0 0 1-4.4-1.2l-.3-.2-3 .9.9-2.9-.2-.3a8.7 8.7 0 1 1 7 3.7zm4.8-6.5c-.3-.2-1.8-.9-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.7.1-.2 0-.4-.1-.5-.1-.2-.7-1.7-1-2.1-.3-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.1 3.1c.1.2 2 3.1 4.9 4.4.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.3.3-.6.3-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/>
+                    message.textContent =
+                        data.message || "Login failed.";
 
-                </svg>
+                    return;
+                }
 
-            </span>
 
+                if (!data.token) {
 
-            WhatsApp Us
+                    message.textContent =
+                        "Login successful, but token missing.";
 
+                    return;
+                }
 
-        </a>
 
+                localStorage.setItem(
+                    "homeFoodToken",
+                    data.token
+                );
 
-    </p>
 
+                message.textContent =
+                    "Login successful!";
 
-</footer>
 
+                setTimeout(() => {
 
+                    window.location.href =
+                        "dashboard.html";
 
-<!-- ==================================================
-     FLOATING WHATSAPP BUTTON
-================================================== -->
+                }, 500);
 
-<a
-    class="whatsapp-floating"
-    target="_blank"
-    rel="noopener"
-    aria-label="Order on WhatsApp"
-    href="https://wa.me/917842984722?text=Hello%20Home%20Food%20Kitchen%2C%20I%20want%20to%20order%20food">
 
+            } catch (error) {
 
-    <svg
-        viewBox="0 0 32 32"
-        xmlns="http://www.w3.org/2000/svg">
+                console.error(
+                    "Login error:",
+                    error
+                );
 
-        <circle
-            cx="16"
-            cy="16"
-            r="15"
-            fill="#25D366"/>
 
-        <path
-            fill="#fff"
-            d="M23.5 8.5A10.5 10.5 0 0 0 7.6 21.2L6 26l5-1.6A10.5 10.5 0 1 0 23.5 8.5zm-7.5 16a8.7 8.7 0 0 1-4.4-1.2l-.3-.2-3 .9.9-2.9-.2-.3a8.7 8.7 0 1 1 7 3.7zm4.8-6.5c-.3-.2-1.8-.9-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.7.1-.2 0-.4-.1-.5-.1-.2-.7-1.7-1-2.1-.3-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.1 3.1c.1.2 2 3.1 4.9 4.4.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.3.3-.6.3-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/>
+                message.textContent =
+                    "Unable to connect to server.";
 
-    </svg>
-
-
-</a>
-
-
-
-<!-- ==================================================
-     WHATSAPP BOOKING JAVASCRIPT
-================================================== -->
-
-<script>
-
-function sendWhatsApp() {
-
-
-    const name =
-        document.getElementById("customerName")
-        .value
-        .trim();
-
-
-    const phone =
-        document.getElementById("customerPhone")
-        .value
-        .trim();
-
-
-    const date =
-        document.getElementById("orderDate")
-        .value;
-
-
-    const order =
-        document.getElementById("orderDetails")
-        .value
-        .trim();
-
-
-    if (!name || !phone || !date || !order) {
-
-        alert(
-            "Please fill all details."
-        );
-
-        return;
-
-    }
-
-
-    const message =
-
-        "Hello Home Food Kitchen!%0A%0A" +
-
-        "New Food Order%0A%0A" +
-
-        "Name: " +
-        encodeURIComponent(name) +
-
-        "%0A" +
-
-        "Phone: " +
-        encodeURIComponent(phone) +
-
-        "%0A" +
-
-        "Date: " +
-        encodeURIComponent(date) +
-
-        "%0A" +
-
-        "Order: " +
-        encodeURIComponent(order);
-
-
-    const whatsappURL =
-        "https://wa.me/917842984722?text=" +
-        message;
-
-
-    window.open(
-        whatsappURL,
-        "_blank"
-    );
-
-}
-
-</script>
-
+            }
+        }
+    </script>
 
 </body>
 
 </html>
-```
